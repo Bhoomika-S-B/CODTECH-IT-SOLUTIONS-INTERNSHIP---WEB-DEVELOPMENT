@@ -1,0 +1,86 @@
+#HTML 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To Do List App</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Write your Task">
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList">
+
+    </ul>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+#CSS
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    border: solid;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3E8E41;
+}
+
+li {
+    cursor: pointer;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #999;
+    cursor: none;
+}
+
+#JAVASCRIPT
+const taskInput = document.getElementById('taskInput');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskList = document.getElementById('taskList');
+
+addTaskBtn.addEventListener('click', function() {
+    const task = document.createElement('li');
+    task.innerText = taskInput.value;
+
+    taskList.appendChild(task);
+
+    taskInput.value = '';
+});
+
+taskList.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+        event.target.classList.toggle('completed');
+    }
+})
